@@ -4,7 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Tymon\JWTAuth\Facades\JWTAuth;
+
+classuse Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
 class JwtMiddleware
@@ -25,5 +26,5 @@ class JwtMiddleware
         }
 
         return $next($request);
-    }
+ }
 }
