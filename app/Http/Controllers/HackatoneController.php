@@ -14,7 +14,14 @@ class HackatoneController extends Controller
         $hachatone->dateFin = $request['dateFin'];
         $hachatone->theme = $request['theme'];
         $hachatone->regles = $request['regles'];
+        $hachatone->save();
         return response()->json('hackatone created succesfully');
     }
    
+    public function delete(Request $request){
+        $hackatone = Hackatone::find($request['id']);
+        $hackatone->delete();
+        return response()->json('hackatone deleted succesfully');
+    }
+
 }

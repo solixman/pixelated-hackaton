@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HackatoneController;
 use App\Http\Controllers\JWTAuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\JwtMiddleware;
@@ -32,3 +33,5 @@ Route::middleware([JwtMiddleware::class])->group(function () {
 });
 
 Route::post('/role/set',[UserController::class,'setRole']);
+Route::post('/hackatone/create',[HackatoneController::class,'create']);
+Route::post('/hackatone/delete',[HackatoneController::class,'delete']);
