@@ -9,19 +9,27 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    
- public function setRole(Request $request){
-    try{
-    $user = User::find($request['id']);
-    $role = Role::where('name',$request['role'])->first();
-    // dd($role);
-    $user->role_id=$role->id;
-    
-    $user->save();
-    return response()->json('role set succefully');
-    }catch(Exception $e){
-        return response()->json($e->getMessage());
+
+    public function setRole(Request $request)
+    {
+        try {
+            $user = User::find($request['id']);
+            $role = Role::where('name', $request['role'])->first();
+            // dd($role);
+            $user->role_id = $role->id;
+
+            $user->save();
+            return response()->json('role set succefully');
+        } catch (Exception $e) {
+            return response()->json($e->getMessage());
+        }
     }
- }    
+    public static function getManybyId($ids) {
+        $users=[];
+        foreach($ids as $id){
+            array_push($users,User::find($id));
+        }
+        return $users;
+    }
 
 }

@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EquipeController;
 use App\Http\Controllers\HackatoneController;
 use App\Http\Controllers\JWTAuthController;
 // use App\Http\Controllers\JWTAuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\JwtMiddleware;
+use App\Models\Equipe;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -40,3 +42,5 @@ Route::post('/hackatone/delete',[HackatoneController::class,'delete']);
 Route::post('/hackatone/update',[HackatoneController::class,'update']);
 Route::get('/hackatones',[ HackatoneController::class,'showAll' ]);
 Route::get('/hackatone/details',[ HackatoneController::class,'showOne' ]);
+Route::get('/inscrire',[ HackatoneController::class,'inscrire']);
+Route::get('/equipe/create',[ EquipeController::class,'create']);

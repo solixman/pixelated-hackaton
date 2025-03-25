@@ -10,7 +10,7 @@ class Equipe extends Model
       'name',
     ];
 
-    public function membres(){
+    public function users(){
         return $this->belongsToMany(User::class); 
     }
     public function projet(){

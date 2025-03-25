@@ -25,17 +25,17 @@ class User extends Authenticatable implements JWTSubject
 
     ];
 
-    public function Role(){
+    public function role(){
         return $this->belongsTo(Role::class);
     }
 
-    public function Notifications(){
+    public function notifications(){
         return $this->hasMany(Notification::class);
     }
-    public function Evaluation(){
+    public function evaluation(){
         return $this->hasMany(Evaluation::class);
     }
-    public function Equipe(){
+    public function equipes(){
         return $this->belongsToMany(Equipe::class);
     }
 
