@@ -14,18 +14,17 @@ return new class extends Migration
         Schema::create('equipes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            // $table->integer('hackatone_id');
-            $table->foreignId('hackatone_id')->references('id')->on('hackatones');
+            $table->string('status')->default('pending');
+            
+            $table->foreignId('hackatone_id')->nullable()->references('id')->on('hackatones');
             $table->timestamps();
         });
-        Schema::create('members', function (Blueprint $table) {
-            $table->id();  
-            // $table->integer('equipes_id');
-            $table->foreignId('equipes_id')->references('id')->on('equipes');
-            // $table->integer('membre_id');
-            $table->foreignId('membre_id')->references('id')->on('equipes');
-            $table->timestamps();
-        });
+        // Schema::create('equipe_user', function (Blueprint $table) {
+        //     $table->id();  
+        //     $table->foreignId('equipe_id')->references('id')->on('equipes');
+        //     $table->foreignId('user_id')->references('id')->on('users');
+        //     $table->timestamps();
+        // });
     }
 
     /**

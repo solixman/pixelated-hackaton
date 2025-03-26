@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('hackatones', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->string('name');
+            $table->string('title');
             $table->date('dateDebut');
             $table->date('dateFin');
             $table->string('theme');
-            $table->text('rules');
+            $table->text('regles');
+            $table->timestamps();
         });
     }
 
