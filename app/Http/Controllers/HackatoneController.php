@@ -6,6 +6,7 @@ use App\Models\Hackatone;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Controllers\JWTAuthController;
+use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Stmt\TryCatch;
@@ -83,17 +84,28 @@ class HackatoneController extends Controller
         }
     }
 
-    public function inscrire(Request $request){
+    
+
+
+    public function inscrire(Request $request)
+    {
         $user = JWTAuth::parseToken()->authenticate();
-        dd($user->equipes());
-     try {
-     
-        // if( isset($user->equipe())){
-            //inscrire;
-        // }
-      
-     } catch (Exception $e) {
-        return ['error'=>$e];
-     }
+        // $user= User::find(1);
+        try {
+
+            if (!isset($user->equipe)) {
+              return response()->json('you dont have a team yet please create or join  one');
+            }
+            else{
+            $hackaton = Hackatone::find($request['id']);
+            
+            $equipe = $user->equipe;
+             $equipe->hackatone()->associate($hackaton);
+             $equipe->save();
+              return ["equipe" => $equipe];
+            }
+        } catch (Exception $e) {
+            return ['error' => $e];
+        }
     }
 }
