@@ -35,8 +35,8 @@ class User extends Authenticatable implements JWTSubject
     public function evaluation(){
         return $this->hasMany(Evaluation::class);
     }
-    public function equipes(){
-        return $this->belongsToMany(Equipe::class);
+    public function equipe(){
+        return $this->belongsTo(Equipe::class);
     }
 
     /**

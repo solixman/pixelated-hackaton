@@ -18,12 +18,12 @@ return new class extends Migration
             $table->foreignId('hackatone_id')->nullable()->references('id')->on('hackatones');
             $table->timestamps();
         });
-        Schema::create('equipe_user', function (Blueprint $table) {
-            $table->id();  
-            $table->foreignId('equipe_id')->references('id')->on('equipes');
-            $table->foreignId('user_id')->references('id')->on('users');
-            $table->timestamps();
-        });
+        // Schema::create('equipe_user', function (Blueprint $table) {
+        //     $table->id();  
+        //     $table->foreignId('equipe_id')->references('id')->on('equipes');
+        //     $table->foreignId('user_id')->references('id')->on('users');
+        //     $table->timestamps();
+        // });
     }
 
     /**

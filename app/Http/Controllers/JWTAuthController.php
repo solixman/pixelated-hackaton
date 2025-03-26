@@ -25,7 +25,7 @@ class JWTAuthController extends Controller
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
         }
-        $role = Role::find(1);
+        $role = Role::where('name','user');
         $user = User::create([
             'name' => $request->get('name'),
             'email' => $request->get('email'),

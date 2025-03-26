@@ -24,12 +24,7 @@ class UserController extends Controller
             return response()->json($e->getMessage());
         }
     }
-    public static function getManybyId($ids) {
-        $users=[];
-        foreach($ids as $id){
-            array_push($users,User::find($id));
-        }
-        return $users;
-    }
+
+    
 
 }

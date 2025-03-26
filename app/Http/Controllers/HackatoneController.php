@@ -8,6 +8,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Controllers\JWTAuthController;
 use Exception;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Stmt\TryCatch;
 
 class HackatoneController extends Controller
 {
@@ -71,6 +72,7 @@ class HackatoneController extends Controller
             return response()->json(['message' => $e->getMessage()]);
         }
     }
+
     public function showOne(Request $request)
     {
         try {
@@ -79,5 +81,19 @@ class HackatoneController extends Controller
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()]);
         }
+    }
+
+    public function inscrire(Request $request){
+        $user = JWTAuth::parseToken()->authenticate();
+        dd($user->equipes());
+     try {
+     
+        // if( isset($user->equipe())){
+            //inscrire;
+        // }
+      
+     } catch (Exception $e) {
+        return ['error'=>$e];
+     }
     }
 }
