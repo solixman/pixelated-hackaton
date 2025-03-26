@@ -43,4 +43,5 @@ Route::post('/hackatone/update',[HackatoneController::class,'update']);
 Route::get('/hackatones',[ HackatoneController::class,'showAll' ]);
 Route::get('/hackatone/details',[ HackatoneController::class,'showOne' ]);
 Route::get('/inscrire',[ HackatoneController::class,'inscrire']);
-Route::get('/equipe/create',[ EquipeController::class,'create']);
+Route::post('/equipe/create',[ EquipeController::class,'create']);
+Route::get('/equipes',[ equipeController::class,'showAll' ]);

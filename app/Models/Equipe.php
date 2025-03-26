@@ -8,6 +8,7 @@ class Equipe extends Model
 {
     protected $fillable=[
       'name',
+      'status',
     ];
 
     public function users(){
@@ -17,8 +18,6 @@ class Equipe extends Model
         return $this->hasOne(Projet::class);
     }
     public function hackatone(){
-        return $this->belongsTo(Projet::class);
+        return $this->belongsTo(Hackatone::class);
     }
-
-
 }

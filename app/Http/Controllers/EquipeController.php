@@ -46,4 +46,11 @@ class EquipeController extends Controller
         array_push($members, $user);
         return $members;
     }
+
+    
+    public function showAll(){
+        $equipes = Equipe::all();
+        
+        return ['equipes'=>$equipes];
+    }
 }

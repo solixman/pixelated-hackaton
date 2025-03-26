@@ -102,7 +102,7 @@ class HackatoneController extends Controller
             $equipe = $user->equipe;
              $equipe->hackatone()->associate($hackaton);
              $equipe->save();
-              return ["equipe" => $equipe];
+              return ["equipe" => $equipe   ];
             }
         } catch (Exception $e) {
             return ['error' => $e];
