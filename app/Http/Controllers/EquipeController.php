@@ -24,10 +24,10 @@ class EquipeController extends Controller
             $equipe = new Equipe();
             $equipe->name = $request['name'];
             $equipe->save();
-            
+
             foreach ($members as $member) {
                 $member->equipe()->associate($equipe);
-                     $member->save();
+                $member->save();
             }
             return [
                 "equipe" => $equipe,
@@ -47,10 +47,24 @@ class EquipeController extends Controller
         return $members;
     }
 
-    
-    public function showAll(){
-        $equipes = Equipe::all();
-        
-        return ['equipes'=>$equipes];
+
+    public function showAll()
+    {
+        try {
+            $equipes = Equipe::all();
+            return ['equipes' => $equipes];
+        } catch (Exception $e) {
+            return ['error' => $e];
+        }
+    }
+    public function activate(Request $request)
+    {
+        try {
+            $equipe = Equipe::find($request['id']);
+            $equipe->status='activated';
+            $equipe->save();
+        } catch (Exception $e) {
+            return ['error' => $e];
+        }
     }
 }
