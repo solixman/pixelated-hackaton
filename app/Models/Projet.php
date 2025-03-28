@@ -16,4 +16,8 @@ class Projet extends Model
         return $this->hasOne(Evaluation::class); 
     }
     
+    public function equipe(){
+        return $this ->belongsTo(Equipe::class);
+    }
+    
 }
