@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('status')->default('pending');
-            
             $table->foreignId('hackatone_id')->nullable()->references('id')->on('hackatones');
             $table->timestamps();
         });

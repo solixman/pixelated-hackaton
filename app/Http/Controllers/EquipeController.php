@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Controllers\UserController;
+use App\Models\Projet;
 
 class EquipeController extends Controller
 {
@@ -31,7 +32,7 @@ class EquipeController extends Controller
             }
             return [
                 "equipe" => $equipe,
-                "members" => $members
+                "members" => $equipe->users
             ];
         } catch (Exception $e) {
             return ['message' => $e->getMessage()];
@@ -57,14 +58,55 @@ class EquipeController extends Controller
             return ['error' => $e];
         }
     }
-    public function activate(Request $request)
+    public function validate(Request $request)
     {
         try {
             $equipe = Equipe::find($request['id']);
-            $equipe->status='activated';
+            $equipe->status='valide';
             $equipe->save();
         } catch (Exception $e) {
             return ['error' => $e];
         }
     }
+    public function refuse(Request $request)
+    {
+        try {
+            $equipe = Equipe::find($request['id']);
+            $equipe->status='refused';
+            $equipe->save();
+        } catch (Exception $e) {
+            return ['error' => $e];
+        }
+    }
+    public function join(Request $request){
+        $size = 3;
+        try{
+            $user = JWTAuth::parseToken()->authenticate();
+            if (isset($user->equipe)){
+                throw new exception('you are already in a tream');
+            }
+            $equipe = Equipe::find($request['id']);
+            
+            if(count($equipe->users) >= $size){
+                throw new exception( 'the team is full, please chose another team or create one');   
+            }
+            
+            $user->equipe()->associate($equipe);
+            $user->save();
+            
+            return[
+                'you joined the'.$equipe->name.'succesfully'
+            ];
+        }
+        catch(Exception $e){
+            return [
+              'error'=> $e->getMessage()
+            ];
+        }
+        
+        
+
+    }
+
+    
 }

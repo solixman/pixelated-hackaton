@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EquipeController;
+use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\HackatoneController;
 use App\Http\Controllers\JWTAuthController;
+use App\Http\Controllers\ProjetController;
 // use App\Http\Controllers\JWTAuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\JwtMiddleware;
@@ -11,6 +13,7 @@ use App\Models\Equipe;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,4 +48,9 @@ Route::get('/hackatone/details',[ HackatoneController::class,'showOne' ]);
 Route::get('/inscrire',[ HackatoneController::class,'inscrire']);
 Route::post('/equipe/create',[ EquipeController::class,'create']);
 Route::get('/equipes',[ equipeController::class,'showAll' ]);
-Route::post('/equipe/activate',[ equipeController::class,'activate' ]);
+Route::post('/equipe/validate',[ equipeController::class,'validate' ]);
+Route::post('/equipe/refuse',[ equipeController::class,'refuse' ]);
+Route::post('/equipe/join',[ equipeController::class,'join' ]);
+Route::post('/project/submit',[ ProjetController::class,'store' ]);
+Route::post('/project/Evaluate',[ EvaluationController::class,'store' ]);
+Route::get('/results',[ EvaluationController::class,'showResults']);
